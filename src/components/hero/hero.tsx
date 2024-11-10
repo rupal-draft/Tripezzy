@@ -27,9 +27,28 @@ const Hero: React.FC = () => {
                 backgroundImage: `url(${banner.image})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
+                backgroundAttachment: "fixed",
                 height: "100vh",
+                width: "100vw",
+                margin: 0,
+                lineHeight: 0,
+                overflow: "hidden",
+                transform: "translateZ(0)", // Fix subpixel rendering
               }}
-            ></div>
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100px",
+                  background:
+                    "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%)",
+                  zIndex: 1,
+                }}
+              />
+            </div>
             <div
               style={{
                 position: "absolute",
@@ -40,7 +59,7 @@ const Hero: React.FC = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: "rgba(0, 0, 0, 0.5)", 
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
               }}
             >
               <div
@@ -61,7 +80,7 @@ const Hero: React.FC = () => {
                       fontWeight: "bold",
                       color: "white",
                       marginBottom: "20px",
-                      textShadow: "2px 2px 4px rgba(0,0,0,0.5)", // Added text shadow
+                      textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
                     }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -74,7 +93,7 @@ const Hero: React.FC = () => {
                       fontSize: "18px",
                       color: "white",
                       marginBottom: "30px",
-                      textShadow: "1px 1px 2px rgba(0,0,0,0.5)", // Added text shadow
+                      textShadow: "1px 1px 2px rgba(0,0,0,0.5)",
                     }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -92,7 +111,7 @@ const Hero: React.FC = () => {
                       style={{
                         display: "inline-flex",
                         alignItems: "center",
-                        backgroundColor: "#FF6B6B", // Changed button color
+                        backgroundColor: "#FF6B6B",
                         color: "white",
                         fontWeight: "600",
                         padding: "15px 30px",
@@ -100,13 +119,13 @@ const Hero: React.FC = () => {
                         textDecoration: "none",
                         transition: "all 0.3s ease",
                         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                        fontSize: "18px", // Increased font size
-                        letterSpacing: "1px", // Added letter spacing
+                        fontSize: "18px",
+                        letterSpacing: "1px",
                       }}
                       whileHover={{
                         scale: 1.05,
                         boxShadow: "0 6px 8px rgba(0, 0, 0, 0.2)",
-                        backgroundColor: "#FF8787", // Lighter color on hover
+                        backgroundColor: "#FF8787",
                       }}
                       whileTap={{ scale: 0.95 }}
                     >

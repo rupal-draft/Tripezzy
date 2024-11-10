@@ -73,6 +73,10 @@ html {
 
 body {
   margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 main {
@@ -8953,6 +8957,12 @@ product checkout css
   margin-left: auto;
   margin-right: auto;
   padding: 5px 20px;
+}
+section.site-main, 
+.slick-slider,
+.slick-slide {
+  height: 100%;
+  overflow: hidden;
 }
 .sidebar .widget:last-child {
   margin-bottom: 0;

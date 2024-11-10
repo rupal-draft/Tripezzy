@@ -1,7 +1,26 @@
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
+import { Clock, Users, MapPin, ArrowRight, Heart } from "lucide-react";
 
-const PackageSection: React.FC = () => {
+interface PackageProps {
+  image: string;
+  price: number;
+  duration: string;
+  people: number;
+  location: string;
+  title: string;
+  reviews: number;
+  rating: number;
+  description: string;
+}
+
+interface PackageSectionProps {
+  packages: PackageProps[];
+}
+
+const PackageSection: React.FC<PackageSectionProps> = ({ packages }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -52,9 +71,9 @@ const PackageSection: React.FC = () => {
         </motion.div>
         <div className="package-inner">
           <div className="row">
-            {[1, 2, 3].map((index) => (
+            {packages.map((pkg) => (
               <motion.div
-                key={index}
+                key={pkg.title}
                 className="col-lg-4 col-md-6"
                 variants={itemVariants}
               >
@@ -65,56 +84,47 @@ const PackageSection: React.FC = () => {
                 >
                   <figure className="feature-image">
                     <a href="#">
-                      <img src={`assets/images/img${index + 4}.jpg`} alt="" />
+                      <img src={pkg.image} alt={pkg.title} />
                     </a>
                   </figure>
                   <div className="package-price">
                     <h6>
-                      <span>${1000 + index * 300} </span> / per person
+                      <span>${pkg.price.toLocaleString()} </span> / per person
                     </h6>
                   </div>
                   <div className="package-content-wrap">
                     <div className="package-meta text-center">
                       <ul>
                         <li>
-                          <i className="far fa-clock"></i>
-                          {7 - index}D/{6 - index}N
+                          <Clock className="inline-block w-4 h-4 mr-1" />
+                          {pkg.duration}
                         </li>
                         <li>
-                          <i className="fas fa-user-friends"></i>
-                          People: {9 - index}
+                          <Users className="inline-block w-4 h-4 mr-1" />
+                          People: {pkg.people}
                         </li>
                         <li>
-                          <i className="fas fa-map-marker-alt"></i>
-                          {["Malaysia", "Canada", "Portugal"][index - 1]}
+                          <MapPin className="inline-block w-4 h-4 mr-1" />
+                          {pkg.location}
                         </li>
                       </ul>
                     </div>
                     <div className="package-content">
                       <h3>
-                        <a href="#">
-                          {
-                            [
-                              "Sunset view of beautiful lakeside resident",
-                              "Experience the natural beauty of island",
-                              "Vacation to the water city of Portugal",
-                            ][index - 1]
-                          }
-                        </a>
+                        <a href="#">{pkg.title}</a>
                       </h3>
                       <div className="review-area">
                         <span className="review-text">
-                          ({25 - index * 3} reviews)
+                          ({pkg.reviews} reviews)
                         </span>
-                        <div className="rating-start" title="Rated 5 out of 5">
-                          <span style={{ width: `${60 + index * 20}%` }}></span>
+                        <div
+                          className="rating-start"
+                          title={`Rated ${pkg.rating} out of 5`}
+                        >
+                          <span style={{ width: `${pkg.rating * 20}%` }}></span>
                         </div>
                       </div>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                        luctus nec ullam. Ut elit tellus, luctus nec ullam elit
-                        tellpus.
-                      </p>
+                      <p>{pkg.description}</p>
                       <div className="btn-wrap">
                         <motion.a
                           href="#"
@@ -122,7 +132,8 @@ const PackageSection: React.FC = () => {
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                         >
-                          Book Now<i className="fas fa-arrow-right"></i>
+                          Book Now
+                          <ArrowRight className="inline-block w-4 h-4 ml-1" />
                         </motion.a>
                         <motion.a
                           href="#"
@@ -130,7 +141,8 @@ const PackageSection: React.FC = () => {
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                         >
-                          Wish List<i className="far fa-heart"></i>
+                          Wish List
+                          <Heart className="inline-block w-4 h-4 ml-1" />
                         </motion.a>
                       </div>
                     </div>

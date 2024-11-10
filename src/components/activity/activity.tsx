@@ -1,10 +1,61 @@
-import React from "react";
+"use client";
 
-const Activity: React.FC = () => {
+import React from "react";
+import { motion } from "framer-motion";
+
+interface ActivityItem {
+  icon: string;
+  title: string;
+  destinations: number;
+}
+
+interface ActivityProps {
+  activities: ActivityItem[];
+}
+
+const ActivityCard: React.FC<ActivityItem> = ({
+  icon,
+  title,
+  destinations,
+}) => (
+  <motion.div
+    className="col-lg-2 col-md-4 col-sm-6"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+  >
+    <motion.div
+      className="activity-item"
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 300 }}
+    >
+      <div className="activity-icon">
+        <a href="#">
+          <img src={icon} alt={title} />
+        </a>
+      </div>
+      <div className="activity-content">
+        <h4>
+          <a href="#">{title}</a>
+        </h4>
+        <p>
+          {destinations} Destination{destinations !== 1 ? "s" : ""}
+        </p>
+      </div>
+    </motion.div>
+  </motion.div>
+);
+
+const Activity: React.FC<ActivityProps> = ({ activities }) => {
   return (
     <section className="activity-section">
       <div className="container">
-        <div className="section-heading text-center">
+        <motion.div
+          className="section-heading text-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <div className="row">
             <div className="col-lg-8 offset-lg-2">
               <h5 className="dash-style">TRAVEL BY ACTIVITY</h5>
@@ -17,98 +68,11 @@ const Activity: React.FC = () => {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
         <div className="activity-inner row">
-          <div className="col-lg-2 col-md-4 col-sm-6">
-            <div className="activity-item">
-              <div className="activity-icon">
-                <a href="#">
-                  <img src="assets/images/icon6.png" alt="" />
-                </a>
-              </div>
-              <div className="activity-content">
-                <h4>
-                  <a href="#">Adventure</a>
-                </h4>
-                <p>15 Destination</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-2 col-md-4 col-sm-6">
-            <div className="activity-item">
-              <div className="activity-icon">
-                <a href="#">
-                  <img src="assets/images/icon10.png" alt="" />
-                </a>
-              </div>
-              <div className="activity-content">
-                <h4>
-                  <a href="#">Trekking</a>
-                </h4>
-                <p>12 Destination</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-2 col-md-4 col-sm-6">
-            <div className="activity-item">
-              <div className="activity-icon">
-                <a href="#">
-                  <img src="assets/images/icon9.png" alt="" />
-                </a>
-              </div>
-              <div className="activity-content">
-                <h4>
-                  <a href="#">Camp Fire</a>
-                </h4>
-                <p>7 Destination</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-2 col-md-4 col-sm-6">
-            <div className="activity-item">
-              <div className="activity-icon">
-                <a href="#">
-                  <img src="assets/images/icon8.png" alt="" />
-                </a>
-              </div>
-              <div className="activity-content">
-                <h4>
-                  <a href="#">Off Road</a>
-                </h4>
-                <p>15 Destination</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-2 col-md-4 col-sm-6">
-            <div className="activity-item">
-              <div className="activity-icon">
-                <a href="#">
-                  <img src="assets/images/icon7.png" alt="" />
-                </a>
-              </div>
-              <div className="activity-content">
-                <h4>
-                  <a href="#">Camping</a>
-                </h4>
-                <p>13 Destination</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-2 col-md-4 col-sm-6">
-            <div className="activity-item">
-              <div className="activity-icon">
-                <a href="#">
-                  <img src="assets/images/icon11.png" alt="" />
-                </a>
-              </div>
-              <div className="activity-content">
-                <h4>
-                  <a href="#">Exploring</a>
-                </h4>
-                <p>25 Destination</p>
-              </div>
-            </div>
-          </div>
+          {activities.map((activity, index) => (
+            <ActivityCard key={index} {...activity} />
+          ))}
         </div>
       </div>
     </section>

@@ -12,6 +12,7 @@ import Suscribe from "../../components/suscribe/suscribe";
 import BlogSection from "../../components/blog section";
 import Testimonial from "../../components/testimonial/testimonial";
 import Contact from "../../components/contact/contact";
+import { Activities, Packages } from "../../utils/constants";
 
 const Home: React.FC = () => {
   return (
@@ -19,9 +20,9 @@ const Home: React.FC = () => {
       <Hero />
       <TripSearch />
       <DestinationSection />
-      <PackageSection />
+      <PackageSection packages={Packages.slice(0, 3)} />
       <Callback />
-      <Activity />
+      <Activity activities={Activities} />
       <Special />
       <Best />
       <Client />
