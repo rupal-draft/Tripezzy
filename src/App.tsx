@@ -8,9 +8,9 @@ import Footer from "./components/footer/footer";
 import Loader from "./components/loading/loading";
 import Home from "./pages/home/home";
 import NotFound from "./pages/404/404";
-import PreloadScripts from "./preloadScripts";
 import Destination from "./pages/destination/destination";
 import TourPackage from "./pages/packages/package";
+import PackageDetail from "./pages/package-detail";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +26,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/destination", element: <Destination /> },
       { path: "/tour-packages", element: <TourPackage /> },
+      { path: "/package-detail", element: <PackageDetail /> },
       { path: "*", element: <NotFound /> },
     ],
   },
@@ -35,7 +36,6 @@ function App() {
   return (
     <Suspense fallback={<Loader />}>
       <SkeletonTheme baseColor="#e0e0e0" highlightColor="#f0f0f0">
-        {/* <PreloadScripts /> */}
         <ToastContainer />
         <RouterProvider router={router} />
       </SkeletonTheme>
