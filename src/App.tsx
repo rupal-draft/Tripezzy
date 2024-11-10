@@ -35,7 +35,7 @@ function App() {
   return (
     <Suspense fallback={<Loader />}>
       <SkeletonTheme baseColor="#e0e0e0" highlightColor="#f0f0f0">
-        <PreloadScripts />
+        {/* <PreloadScripts /> */}
         <ToastContainer />
         <RouterProvider router={router} />
       </SkeletonTheme>
