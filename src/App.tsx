@@ -11,6 +11,7 @@ import NotFound from "./pages/404/404";
 import Destination from "./pages/destination/destination";
 import TourPackage from "./pages/packages/package";
 import PackageDetail from "./pages/package-detail";
+import PackageOffers from "./pages/package-offers";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       { path: "/destination", element: <Destination /> },
       { path: "/tour-packages", element: <TourPackage /> },
       { path: "/package-detail", element: <PackageDetail /> },
+      { path: "/package-offer", element: <PackageOffers /> },
       { path: "*", element: <NotFound /> },
     ],
   },

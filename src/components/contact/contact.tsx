@@ -1,96 +1,71 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { contactInfo } from "../../utils/constants";
+
+interface ContactInfo {
+  icon: string;
+  items: string[];
+}
+
+const ContactDetails: React.FC<{ info: ContactInfo }> = ({ info }) => (
+  <motion.div
+    className="col-sm-4"
+    initial={{ opacity: 0, x: -50 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.5 }}
+  >
+    <div className="contact-details">
+      <div className="contact-icon">
+        <img src={info.icon} alt="" />
+      </div>
+      <ul>
+        {info.items.map((item, index) => (
+          <li key={index}>
+            <a href="#">{item}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </motion.div>
+);
 
 const Contact: React.FC = () => {
+  const ContactInfo: ContactInfo[] = contactInfo;
   return (
     <section className="contact-section">
       <div className="container">
         <div className="row">
           <div className="col-lg-4">
-            <div
+            <motion.div
               className="contact-img"
               style={{ backgroundImage: "url(assets/images/img24.jpg)" }}
-            ></div>
+              whileHover={{ scale: 1.05 }}
+            ></motion.div>
           </div>
           <div className="col-lg-8">
             <div className="contact-details-wrap">
               <div className="row">
-                <div className="col-sm-4">
-                  <div className="contact-details">
-                    <div className="contact-icon">
-                      <img src="assets/images/icon12.png" alt="" />
-                    </div>
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <span
-                            className="__cf_email__"
-                            data-cfemail="b6c5c3c6c6d9c4c2f6d1dbd7dfda98d5d9db"
-                          >
-                            [email&#160;protected]
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <span
-                            className="__cf_email__"
-                            data-cfemail="660f0800092602090b070f084805090b"
-                          >
-                            [email&#160;protected]
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <span
-                            className="__cf_email__"
-                            data-cfemail="c2aca3afa782a1adafb2a3acbbeca1adaf"
-                          >
-                            [email&#160;protected]
-                          </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="col-sm-4">
-                  <div className="contact-details">
-                    <div className="contact-icon">
-                      <img src="assets/images/icon13.png" alt="" />
-                    </div>
-                    <ul>
-                      <li>
-                        <a href="#">+132 (599) 254 669</a>
-                      </li>
-                      <li>
-                        <a href="#">+123 (669) 255 587</a>
-                      </li>
-                      <li>
-                        <a href="#">+01 (977) 2599 12</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="col-sm-4">
-                  <div className="contact-details">
-                    <div className="contact-icon">
-                      <img src="assets/images/icon14.png" alt="" />
-                    </div>
-                    <ul>
-                      <li>3146 Koontz, California</li>
-                      <li>Quze.24 Second floor</li>
-                      <li>36 Street, Melbourne</li>
-                    </ul>
-                  </div>
-                </div>
+                {ContactInfo.map((info, index) => (
+                  <ContactDetails key={index} info={info} />
+                ))}
               </div>
             </div>
-            <div className="contact-btn-wrap">
+            <motion.div
+              className="contact-btn-wrap"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.5 }}
+            >
               <h3>LET'S JOIN US FOR MORE UPDATE !!</h3>
-              <a href="#" className="button-primary">
+              <motion.a
+                href="#"
+                className="button-primary"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
                 LEARN MORE
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
           </div>
         </div>
       </div>
