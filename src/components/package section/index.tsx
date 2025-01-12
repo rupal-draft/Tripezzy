@@ -21,46 +21,37 @@ interface PackageSectionProps {
 }
 
 const PackageSection: React.FC<PackageSectionProps> = ({ packages }) => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
   return (
-    <motion.section
-      className="package-section"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-    >
+    <section className="package-section">
       <div className="container">
         <motion.div
           className="section-heading text-center"
-          variants={itemVariants}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
           <div className="row">
             <div className="col-lg-8 offset-lg-2">
-              <motion.h5 className="dash-style" variants={itemVariants}>
+              <motion.h5
+                className="dash-style"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 EXPLORE GREAT PLACES
               </motion.h5>
-              <motion.h2 variants={itemVariants}>POPULAR PACKAGES</motion.h2>
-              <motion.p variants={itemVariants}>
+              <motion.h2
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                POPULAR PACKAGES
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 Mollit voluptatem perspiciatis convallis elementum corporis quo
                 veritatis aliquid blandit, blandit torquent, odit placeat.
                 Adipiscing repudiandae eius cursus? Nostrum magnis maxime curae
@@ -71,11 +62,13 @@ const PackageSection: React.FC<PackageSectionProps> = ({ packages }) => {
         </motion.div>
         <div className="package-inner">
           <div className="row">
-            {packages.map((pkg) => (
+            {packages.map((pkg, index) => (
               <motion.div
                 key={pkg.title}
                 className="col-lg-4 col-md-6"
-                variants={itemVariants}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <motion.div
                   className="package-wrap"
@@ -153,17 +146,22 @@ const PackageSection: React.FC<PackageSectionProps> = ({ packages }) => {
           </div>
           <motion.div
             className="btn-wrap text-center"
-            variants={itemVariants}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <a href="#" className="button-primary">
+            <motion.a
+              href="#"
+              className="button-primary"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
               VIEW ALL PACKAGES
-            </a>
+            </motion.a>
           </motion.div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

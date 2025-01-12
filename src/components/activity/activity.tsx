@@ -21,7 +21,8 @@ const ActivityCard: React.FC<ActivityItem> = ({
   <motion.div
     className="col-lg-2 col-md-4 col-sm-6"
     initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.5 }}
     transition={{ duration: 0.5 }}
   >
     <motion.div
@@ -52,20 +53,41 @@ const Activity: React.FC<ActivityProps> = ({ activities }) => {
       <div className="container">
         <motion.div
           className="section-heading text-center"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8 }}
         >
           <div className="row">
             <div className="col-lg-8 offset-lg-2">
-              <h5 className="dash-style">TRAVEL BY ACTIVITY</h5>
-              <h2>ADVENTURE & ACTIVITY</h2>
-              <p>
+              <motion.h5
+                className="dash-style"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                TRAVEL BY ACTIVITY
+              </motion.h5>
+              <motion.h2
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                ADVENTURE & ACTIVITY
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 Mollit voluptatem perspiciatis convallis elementum corporis quo
                 veritatis aliquid blandit, blandit torquent, odit placeat.
                 Adipiscing repudiandae eius cursus? Nostrum magnis maxime curae
                 placeat.
-              </p>
+              </motion.p>
             </div>
           </div>
         </motion.div>

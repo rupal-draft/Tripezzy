@@ -1,103 +1,113 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
+import { specialOffers } from "../../utils/constants";
+
+interface SpecialOffer {
+  image: string;
+  discount: number;
+  location: string;
+  title: string;
+  originalPrice: number;
+  discountedPrice: number;
+}
+
+const SpecialOfferCard: React.FC<SpecialOffer> = ({
+  image,
+  discount,
+  location,
+  title,
+  originalPrice,
+  discountedPrice,
+}) => (
+  <motion.div
+    className="col-md-6 col-lg-4"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.3 }}
+    transition={{ duration: 0.5 }}
+  >
+    <motion.div
+      className="special-item"
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 300 }}
+    >
+      <figure className="special-img">
+        <img src={image} alt={title} />
+      </figure>
+      <div className="badge-dis">
+        <span>
+          <strong>{discount}%</strong>
+          off
+        </span>
+      </div>
+      <div className="special-content">
+        <div className="meta-cat">
+          <a href="#">{location}</a>
+        </div>
+        <h3>
+          <a href="#">{title}</a>
+        </h3>
+        <div className="package-price">
+          Price:
+          <del>${originalPrice}</del>
+          <ins>${discountedPrice}</ins>
+        </div>
+      </div>
+    </motion.div>
+  </motion.div>
+);
 
 const Special: React.FC = () => {
   return (
     <section className="special-section">
       <div className="container">
-        <div className="section-heading text-center">
+        <motion.div
+          className="section-heading text-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="row">
             <div className="col-lg-8 offset-lg-2">
-              <h5 className="dash-style">TRAVEL OFFER & DISCOUNT</h5>
-              <h2>SPECIAL TRAVEL OFFER</h2>
-              <p>
+              <motion.h5
+                className="dash-style"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                TRAVEL OFFER & DISCOUNT
+              </motion.h5>
+              <motion.h2
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                SPECIAL TRAVEL OFFER
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 Mollit voluptatem perspiciatis convallis elementum corporis quo
                 veritatis aliquid blandit, blandit torquent, odit placeat.
                 Adipiscing repudiandae eius cursus? Nostrum magnis maxime curae
                 placeat.
-              </p>
+              </motion.p>
             </div>
           </div>
-        </div>
+        </motion.div>
         <div className="special-inner">
           <div className="row">
-            <div className="col-md-6 col-lg-4">
-              <div className="special-item">
-                <figure className="special-img">
-                  <img src="assets/images/img9.jpg" alt="" />
-                </figure>
-                <div className="badge-dis">
-                  <span>
-                    <strong>20%</strong>
-                    off
-                  </span>
-                </div>
-                <div className="special-content">
-                  <div className="meta-cat">
-                    <a href="#">CANADA</a>
-                  </div>
-                  <h3>
-                    <a href="#">Experience the natural beauty of glacier</a>
-                  </h3>
-                  <div className="package-price">
-                    Price:
-                    <del>$1500</del>
-                    <ins>$1200</ins>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4">
-              <div className="special-item">
-                <figure className="special-img">
-                  <img src="assets/images/img10.jpg" alt="" />
-                </figure>
-                <div className="badge-dis">
-                  <span>
-                    <strong>15%</strong>
-                    off
-                  </span>
-                </div>
-                <div className="special-content">
-                  <div className="meta-cat">
-                    <a href="#">NEW ZEALAND</a>
-                  </div>
-                  <h3>
-                    <a href="#">Trekking to the mountain camp site</a>
-                  </h3>
-                  <div className="package-price">
-                    Price:
-                    <del>$1300</del>
-                    <ins>$1105</ins>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4">
-              <div className="special-item">
-                <figure className="special-img">
-                  <img src="assets/images/img11.jpg" alt="" />
-                </figure>
-                <div className="badge-dis">
-                  <span>
-                    <strong>15%</strong>
-                    off
-                  </span>
-                </div>
-                <div className="special-content">
-                  <div className="meta-cat">
-                    <a href="#">MALAYSIA</a>
-                  </div>
-                  <h3>
-                    <a href="#">Sunset view of beautiful lakeside city</a>
-                  </h3>
-                  <div className="package-price">
-                    Price:
-                    <del>$1800</del>
-                    <ins>$1476</ins>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {specialOffers.map((offer, index) => (
+              <SpecialOfferCard key={index} {...offer} />
+            ))}
           </div>
         </div>
       </div>

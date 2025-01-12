@@ -339,3 +339,86 @@ export const LatestBlogPosts = [
     commentsLink: "#",
   },
 ];
+
+export const specialOffers = [
+  {
+    image: "assets/images/img9.jpg",
+    discount: 20,
+    location: "CANADA",
+    title: "Experience the natural beauty of glacier",
+    originalPrice: 1500,
+    discountedPrice: 1200,
+  },
+  {
+    image: "assets/images/img10.jpg",
+    discount: 15,
+    location: "NEW ZEALAND",
+    title: "Trekking to the mountain camp site",
+    originalPrice: 1300,
+    discountedPrice: 1105,
+  },
+  {
+    image: "assets/images/img11.jpg",
+    discount: 15,
+    location: "MALAYSIA",
+    title: "Sunset view of beautiful lakeside city",
+    originalPrice: 1800,
+    discountedPrice: 1476,
+  },
+];
+
+export const galleryImages = [
+  { src: "assets/images/img12.jpg", alt: "Gallery image 1" },
+  { src: "assets/images/img13.jpg", alt: "Gallery image 2" },
+  { src: "assets/images/img14.jpg", alt: "Gallery image 3" },
+  { src: "assets/images/img15.jpg", alt: "Gallery image 4" },
+];
+
+export const blogPosts = [
+  {
+    image: "assets/images/img17.jpg",
+    title: "Life is a beautiful journey not a destination",
+    author: "Demoteam",
+    date: "August 17, 2021",
+    comments: "No Comments",
+  },
+  {
+    image: "assets/images/img18.jpg",
+    title: "Take only memories, leave only footprints",
+    author: "Demoteam",
+    date: "August 17, 2021",
+    comments: "No Comments",
+  },
+  {
+    image: "assets/images/img19.jpg",
+    title: "Journeys are best measured in new friends",
+    author: "Demoteam",
+    date: "August 17, 2021",
+    comments: "No Comments",
+  },
+];
+
+export const services = [
+  {
+    icon: "assets/images/icon15.png",
+    title: "AFFORDABLE PRICE",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  },
+  {
+    icon: "assets/images/icon16.png",
+    title: "BEST DESTINATION",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  },
+  {
+    icon: "assets/images/icon17.png",
+    title: "PERSONAL SERVICE",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  },
+];
+
+export const counterItems = [
+  { icon: "assets/images/icon1.png", count: 500, text: "Satisfied Clients" },
+  { icon: "assets/images/icon2.png", count: 250, text: "Awards Achieve" },
+  { icon: "assets/images/icon3.png", count: 15, text: "Active Members" },
+  { icon: "assets/images/icon4.png", count: 10, text: "Tour Destination" },
+];

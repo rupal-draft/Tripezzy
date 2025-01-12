@@ -1,99 +1,109 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
+import { blogPosts } from "../../utils/constants";
+
+interface BlogPost {
+  image: string;
+  title: string;
+  author: string;
+  date: string;
+  comments: string;
+}
+
+const BlogPostCard: React.FC<BlogPost> = ({
+  image,
+  title,
+  author,
+  date,
+  comments,
+}) => (
+  <motion.div
+    className="col-md-6 col-lg-4"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.3 }}
+    transition={{ duration: 0.5 }}
+  >
+    <motion.article
+      className="post"
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 300 }}
+    >
+      <figure className="feature-image">
+        <a href="#">
+          <img src={image} alt={title} />
+        </a>
+      </figure>
+      <div className="entry-content">
+        <h3>
+          <a href="#">{title}</a>
+        </h3>
+        <div className="entry-meta">
+          <span className="byline">
+            <a href="#">{author}</a>
+          </span>
+          <span className="posted-on">
+            <a href="#">{date}</a>
+          </span>
+          <span className="comments-link">
+            <a href="#">{comments}</a>
+          </span>
+        </div>
+      </div>
+    </motion.article>
+  </motion.div>
+);
 
 const BlogSection: React.FC = () => {
   return (
     <section className="blog-section">
       <div className="container">
-        <div className="section-heading text-center">
+        <motion.div
+          className="section-heading text-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="row">
             <div className="col-lg-8 offset-lg-2">
-              <h5 className="dash-style">FROM OUR BLOG</h5>
-              <h2>OUR RECENT POSTS</h2>
-              <p>
+              <motion.h5
+                className="dash-style"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                FROM OUR BLOG
+              </motion.h5>
+              <motion.h2
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                OUR RECENT POSTS
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 Mollit voluptatem perspiciatis convallis elementum corporis quo
                 veritatis aliquid blandit, blandit torquent, odit placeat.
                 Adipiscing repudiandae eius cursus? Nostrum magnis maxime curae
                 placeat.
-              </p>
+              </motion.p>
             </div>
           </div>
-        </div>
+        </motion.div>
         <div className="row">
-          <div className="col-md-6 col-lg-4">
-            <article className="post">
-              <figure className="feature-image">
-                <a href="#">
-                  <img src="assets/images/img17.jpg" alt="" />
-                </a>
-              </figure>
-              <div className="entry-content">
-                <h3>
-                  <a href="#">Life is a beautiful journey not a destination</a>
-                </h3>
-                <div className="entry-meta">
-                  <span className="byline">
-                    <a href="#">Demoteam</a>
-                  </span>
-                  <span className="posted-on">
-                    <a href="#">August 17, 2021</a>
-                  </span>
-                  <span className="comments-link">
-                    <a href="#">No Comments</a>
-                  </span>
-                </div>
-              </div>
-            </article>
-          </div>
-          <div className="col-md-6 col-lg-4">
-            <article className="post">
-              <figure className="feature-image">
-                <a href="#">
-                  <img src="assets/images/img18.jpg" alt="" />
-                </a>
-              </figure>
-              <div className="entry-content">
-                <h3>
-                  <a href="#">Take only memories, leave only footprints</a>
-                </h3>
-                <div className="entry-meta">
-                  <span className="byline">
-                    <a href="#">Demoteam</a>
-                  </span>
-                  <span className="posted-on">
-                    <a href="#">August 17, 2021</a>
-                  </span>
-                  <span className="comments-link">
-                    <a href="#">No Comments</a>
-                  </span>
-                </div>
-              </div>
-            </article>
-          </div>
-          <div className="col-md-6 col-lg-4">
-            <article className="post">
-              <figure className="feature-image">
-                <a href="#">
-                  <img src="assets/images/img19.jpg" alt="" />
-                </a>
-              </figure>
-              <div className="entry-content">
-                <h3>
-                  <a href="#">Journeys are best measured in new friends</a>
-                </h3>
-                <div className="entry-meta">
-                  <span className="byline">
-                    <a href="#">Demoteam</a>
-                  </span>
-                  <span className="posted-on">
-                    <a href="#">August 17, 2021</a>
-                  </span>
-                  <span className="comments-link">
-                    <a href="#">No Comments</a>
-                  </span>
-                </div>
-              </div>
-            </article>
-          </div>
+          {blogPosts.map((post, index) => (
+            <BlogPostCard key={index} {...post} />
+          ))}
         </div>
       </div>
     </section>
