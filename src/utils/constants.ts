@@ -417,8 +417,30 @@ export const services = [
 ];
 
 export const counterItems = [
-  { icon: "assets/images/icon1.png", count: 500, text: "Satisfied Clients" },
-  { icon: "assets/images/icon2.png", count: 250, text: "Awards Achieve" },
-  { icon: "assets/images/icon3.png", count: 15, text: "Active Members" },
-  { icon: "assets/images/icon4.png", count: 10, text: "Tour Destination" },
+  {
+    icon: "assets/images/icon1.png",
+    count: 500,
+    text: "Satisfied Clients",
+    suffix: "K+",
+  },
+  {
+    icon: "assets/images/icon2.png",
+    count: 250,
+    text: "Awards Achieve",
+    suffix: "K+",
+  },
+  {
+    icon: "assets/images/icon3.png",
+    count: 15,
+    text: "Active Members",
+    suffix: "K+",
+  },
+  {
+    icon: "assets/images/icon4.png",
+    count: 10,
+    text: "Tour Destination",
+    suffix: "K+",
+  },
 ];
+
+

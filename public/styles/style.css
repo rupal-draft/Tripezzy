@@ -9007,7 +9007,23 @@ product checkout css
   cursor: pointer;
   border-radius: 50%;
 }
-section.site-main, 
+
+.dash-style {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.dash-style::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4rem;
+  height: 2px;
+  background-color: white;
+}
+section.site-main,
 .slick-slider,
 .slick-slide {
   height: 100%;

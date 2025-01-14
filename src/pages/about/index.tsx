@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Banner from "../../components/banner";
 import { clients, services } from "../../utils/constants";
-import EnhancedCallbackSection from "../../components/callback/enhancedCallback";
+import { TravelCallbackSection } from "../../components/callback/enhancedCallback";
 
 interface ServiceItem {
   icon: string;
@@ -140,8 +140,7 @@ const AboutUs: React.FC = () => {
             </div>
           </div>
         </div>
-
-        <EnhancedCallbackSection />
+        <TravelCallbackSection />
       </section>
     </main>
   );

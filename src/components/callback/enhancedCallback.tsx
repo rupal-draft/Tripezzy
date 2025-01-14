@@ -1,89 +1,108 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { counterItems } from "../../utils/constants";
 
-interface CounterItem {
-  icon: string;
-  count: number;
-  text: string;
-}
-
-const EnhancedCallbackSection: React.FC = () => {
+export function TravelCallbackSection() {
   return (
-    <motion.div
-      className="relative overflow-hidden bg-cover bg-center bg-no-repeat py-24 text-white"
-      style={{ backgroundImage: "url(/assets/images/img26.jpg)" }}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+    <div
+      className="fullwidth-callback"
+      style={{ backgroundImage: "url('/assets/images/img26.jpg')" }}
     >
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="mb-16 text-center"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h5 className="mb-4 inline-block border-b-2 border-primary-500 px-2 py-1 text-sm font-semibold uppercase tracking-wider text-primary-300">
-            CALLBACK FOR MORE
-          </h5>
-          <h2 className="mb-6 text-4xl font-bold leading-tight sm:text-5xl">
-            GO TRAVEL. DISCOVER.{" "}
-            <span className="text-primary-300">REMEMBER US!!</span>
-          </h2>
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-300">
-            Mollit voluptatem perspiciatis convallis elementum corporis quo
-            veritatis aliquid blandit, blandit torquent, odit placeat.
-            Adipiscing repudiandae eius cursus? Nostrum magnis maxime curae
-            placeat.
-          </p>
-        </motion.div>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {counterItems.map((item: CounterItem, index) => (
-            <motion.div
-              key={index}
-              className="text-center"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <motion.div
-                className="mb-4 inline-block rounded-full bg-white p-4 shadow-lg"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                <img
-                  src={item.icon}
-                  alt={item.text}
-                  width={60}
-                  height={60}
-                  className="h-12 w-12 object-contain"
-                />
-              </motion.div>
-              <div className="counter-content">
-                <span className="mb-2 block text-4xl font-bold text-primary-300">
-                  <motion.span
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.2 }}
-                  >
-                    {item.count}
-                  </motion.span>
-                  K+
-                </span>
-                <span className="text-lg font-medium">{item.text}</span>
-              </div>
-            </motion.div>
+      <div className="container">
+        <div className="section-heading section-heading-white text-center">
+          <div className="row">
+            <div className="col-lg-8 offset-lg-2">
+              <h5 className="dash-style">CALLBACK FOR MORE</h5>
+              <h2>GO TRAVEL.DISCOVER. REMEMBER US!!</h2>
+              <p>
+                Mollit voluptatem perspiciatis convallis elementum corporis quo
+                veritatis aliquid blandit, blandit torquent, odit placeat.
+                Adipiscing repudiandae eius cursus? Nostrum magnis maxime curae
+                placeat.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="callback-counter-wrap">
+          {counterItems.map((item, index) => (
+            <CounterItem key={index} {...item} delay={index * 0.2} />
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
-};
+}
 
-export default EnhancedCallbackSection;
+interface CounterItemProps {
+  icon: string;
+  count: number;
+  suffix: string;
+  text: string;
+  delay: number;
+}
+
+function CounterItem({ icon, count, suffix, text, delay }: CounterItemProps) {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  return (
+    <div className="counter-item">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 50 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, delay }}
+        className="counter-item-inner"
+      >
+        <div className="counter-icon">
+          <img src={icon} alt="" />
+        </div>
+        <div className="counter-content">
+          <motion.span
+            className="counter-no"
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: delay + 0.3 }}
+          >
+            <span className="counter">
+              <CountUp end={count} duration={2.5} />
+            </span>
+            {suffix}
+          </motion.span>
+          <span className="counter-text">{text}</span>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+function CountUp({ end, duration }: { end: number; duration: number }) {
+  const [count, setCount] = React.useState(0);
+
+  React.useEffect(() => {
+    let startTime: number | null = null;
+    let animationFrame: number;
+
+    const updateCount = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = (timestamp - startTime) / (duration * 1000);
+
+      if (progress < 1) {
+        setCount(Math.min(Math.floor(end * progress), end));
+        animationFrame = requestAnimationFrame(updateCount);
+      } else {
+        setCount(end);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(updateCount);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [end, duration]);
+
+  return <React.Fragment>{count}</React.Fragment>;
+}
